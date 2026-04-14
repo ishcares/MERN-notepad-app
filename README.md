@@ -50,6 +50,7 @@ A full-stack note-taking application built using the MERN stack and containerize
 ├── docker-compose.yml
 ├── Dockerfile
 
+
 ---
 
 ## ⚙️ Getting Started
@@ -61,10 +62,12 @@ A full-stack note-taking application built using the MERN stack and containerize
 ---
 
 ### ▶️ Run Locally
-```bash
-docker-compose up --build
 
 ```bash
+docker-compose up --build
+---
+🧪 API Endpoints
+
 | Method | Endpoint   | Description   |
 | ------ | ---------- | ------------- |
 | GET    | /notes     | Get all notes |
