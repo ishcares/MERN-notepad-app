@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  // Use env var in production (Netlify), fall back to relative path for local dev (Vite proxy)
+  // In production (Netlify): VITE_BACKEND_URL is set via Netlify Dashboard env vars
+  // In local dev: falls back to "/api" which Vite proxies to localhost:8000
   baseURL: import.meta.env.VITE_BACKEND_URL || "/api",
   withCredentials: true,
 });
