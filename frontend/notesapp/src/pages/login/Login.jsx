@@ -35,57 +35,75 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-2 text-primary">Notes</h1>
-      <h2 className="text-2xl font-semibold mb-6">Login</h2>
+    <div className="flex flex-col items-center justify-center h-screen bg-[#EAEFEA] text-[#2C3B2E]">
+      <h1 className="text-3xl font-semibold mb-1 text-[#2C3B2E] tracking-tight">Journal</h1>
+      <p className="text-sm text-[#5C6B5E] mb-8 font-light">A quiet place for your thoughts</p>
 
       <form
         onSubmit={handleLogin}
-        className="bg-white p-6 rounded shadow-md w-full max-w-sm"
+        className="bg-white border border-[#D9E4DD] p-8 rounded-[12px] w-full max-w-sm flex flex-col space-y-5 shadow-sm"
       >
-        <input
-          type="email"
-          placeholder="Enter Email"
-          className="w-full p-2 mb-3 border border-gray-300 rounded"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-
-        <div className="relative mb-4">
+        <div>
+          <label className="block mb-1.5 text-xs font-semibold text-[#5C6B5E] uppercase tracking-wider">Email Address</label>
           <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Enter Password"
-            className="w-full p-2 border border-gray-300 rounded pr-10"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            type="email"
+            placeholder="Enter your email"
+            className="w-full px-3 py-2.5 bg-[#FCFDFD] border border-[#D9E4DD] rounded-[12px] focus:outline-none focus:border-[#4A6B53] focus:ring-0 text-sm text-[#2C3B2E] placeholder-[#A0B0A4] transition duration-200"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <span
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-2.5 cursor-pointer text-gray-700 hover:text-gray-900 text-lg"
-          >
-            {showPassword ? <FaEye /> : <FaEyeSlash />}
-          </span>
         </div>
 
-        <div className="flex justify-between items-center mb-4 text-sm">
-          <span className="text-gray-600">Not registered yet?</span>
-          <button
-            type="button"
-            onClick={() => navigate("/signup")}
-            className="text-secondary hover:underline"
-          >
-            Create an Account
-          </button>
+        <div>
+          <label className="block mb-1.5 text-xs font-semibold text-[#5C6B5E] uppercase tracking-wider">Password</label>
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter your password"
+              className="w-full px-3 py-2.5 bg-[#FCFDFD] border border-[#D9E4DD] rounded-[12px] focus:outline-none focus:border-[#4A6B53] focus:ring-0 text-sm text-[#2C3B2E] placeholder-[#A0B0A4] pr-10 transition duration-200"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3 cursor-pointer text-[#8A9B8E] hover:text-[#2C3B2E] text-base"
+            >
+              {showPassword ? <FaEye /> : <FaEyeSlash />}
+            </span>
+          </div>
         </div>
 
         <button
           type="submit"
-          className="w-full bg-primary text-white py-2 rounded hover:bg-blue-700"
+          className="w-full bg-[#4A6B53] hover:bg-[#3A5642] text-white py-3 rounded-[12px] font-medium transition duration-300 ease-in-out text-sm shadow-sm"
         >
           Login
         </button>
+
+        <div className="flex flex-col space-y-3 pt-2 text-center text-xs border-t border-[#FAFAF8]">
+          <div className="text-[#5C6B5E]">
+            Not registered yet?{" "}
+            <button
+              type="button"
+              onClick={() => navigate("/signup")}
+              className="text-[#4A6B53] hover:text-[#2C3B2E] hover:underline font-semibold"
+            >
+              Create an Account
+            </button>
+          </div>
+
+          <div>
+            <button
+              type="button"
+              onClick={() => navigate("/forgot-password")}
+              className="text-[#8A9B8E] hover:text-[#2C3B2E] hover:underline font-medium"
+            >
+              Forgot Password?
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );

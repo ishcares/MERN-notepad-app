@@ -29,3 +29,21 @@ export const signupUser = async (data) => {
         throw error.response?.data || { message: "Account creation failed" };
     }
 };
+
+export const getSecurityQuestion = async (email) => {
+    try {
+        const res = await axiosInstance.post("api/forgot-password/question", { email });
+        return res.data;
+    } catch (error) {
+        throw error.response?.data || { message: "Failed to retrieve security question" };
+    }
+};
+
+export const resetPassword = async (data) => {
+    try {
+        const res = await axiosInstance.post("api/forgot-password/reset", data);
+        return res.data;
+    } catch (error) {
+        throw error.response?.data || { message: "Password reset failed" };
+    }
+};

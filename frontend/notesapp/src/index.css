@@ -1,25 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  html {
-      font-family: "poppins","sans-serif";
+  html, body {
+      font-family: "Inter", sans-serif;
+      background-color: #EAEFEA; /* Rich, cozy pale sage background for strong contrast */
+      color: #2C3B2E;
+      line-height: 1.8;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
   }
   
-  body {
-    background-color: #fdfeff;
-    overflow-x: hidden;
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: 500;
+      color: #2C3B2E;
   }
 }
 
-@layer components {
-  .tag {
-    @apply bg-pink-100 text-pink-800 px-2 py-1 rounded mr-1 mb-1 inline-flex items-center;
+@layer utilities {
+  /* Minimal scrollbar utility */
+  .minimal-scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  
+  .minimal-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .minimal-scrollbar::-webkit-scrollbar-thumb {
+    background: #8A9B8E;
+    border-radius: 12px;
+  }
+  
+  .minimal-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #2C3B2E;
   }
 
-  .tag button {
-    @apply ml-1 text-pink-600 hover:text-pink-800;
+  .minimal-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #8A9B8E transparent;
   }
 }

@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // Import Pages and Components
 import Login from "./pages/login/Login";// <--- Removed .jsx
 import SignUp from './pages/SignUp/SignUp'; // <--- Removed .jsx
+import ForgotPassword from './pages/login/ForgotPassword';
 import Home from './pages/Home/Home'; 
 import PrivateRoute from "./components/PrivateRoute";// The gatekeeper component
 
@@ -21,6 +22,7 @@ function App() {
         {/* 1. Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
         {/* 2. Protected Routes Wrapper */}
         <Route element={<PrivateRoute />}>

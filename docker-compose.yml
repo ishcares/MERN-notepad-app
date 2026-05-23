@@ -1,4 +1,20 @@
 services:
+  # --- Database Service (MongoDB) ---
+  mongodb:
+    image: mongo:latest
+    container_name: notesapp-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
   # --- Backend Service (Express API) ---
   backend:
     build:
@@ -6,19 +22,18 @@ services:
       dockerfile: Dockerfile
     container_name: notesapp-backend
     restart: always
-
     ports:
       - "8000:8000"
-
     env_file:
       - ./backend/.env
-
     environment:
-      - ALLOWED_ORIGIN=http://localhost:5173 
+      - ALLOWED_ORIGIN=http://localhost:5173
       - PORT=8000
+      - MONGO_URL=mongodb://mongodb:27017/notesapp
+    depends_on:
+      mongodb:
+        condition: service_healthy
 
-    # 🛑 HEALTHCHECK BLOCK IS REMOVED HERE
-    
   # --- Frontend Service (Vite + Nginx) ---
   frontend:
     build:
@@ -26,17 +41,15 @@ services:
       dockerfile: Dockerfile
       args:
         - CACHEBUST=${CACHEBUST_TIMESTAMP}
-        
     container_name: notesapp-frontend
     restart: always
-
     ports:
       - "5173:80"
-
     environment:
       - VITE_BACKEND_URL=http://localhost:8000
-
-    # 🟢 FIX: Only waits for the service to be STARTED
     depends_on:
       backend:
         condition: service_started
+
+volumes:
+  mongo-data:
