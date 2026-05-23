@@ -1,2 +1,2 @@
-/api/*  https://your-backend-url.onrender.com/api/:splat  200
+/api/*  https://notesapp-backend-es8y.onrender.com/api/:splat  200
 /*      /index.html                                     200
