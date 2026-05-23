@@ -13,7 +13,6 @@ export default defineConfig({
         target: 'http://localhost:8000', // Replace 5000 with your back-end port
         changeOrigin: true, // Needed for virtual hosting
         secure: false, // Set to true if your back-end uses HTTPS
-        rewrite: (path) => path.replace(/^\/api/, ''),
       }
     }
   },

@@ -3,7 +3,7 @@ import axiosInstance from "../utils/axiosInstance";
 export const loginUser = async (data) => {
   try {
     // 🟢 FIX: Added 'api/' prefix to trigger the Vite proxy
-    const res = await axiosInstance.post("api/login", data);
+    const res = await axiosInstance.post("/api/login", data);
     
     // 🟢 CRITICAL: Save the token and user data to Local Storage
     if (res.data.token) {
@@ -22,7 +22,7 @@ export const loginUser = async (data) => {
 export const signupUser = async (data) => {
     try {
         // 🟢 FIX: Added 'api/' prefix to trigger the Vite proxy
-        const res = await axiosInstance.post("api/create-account", data); 
+        const res = await axiosInstance.post("/api/create-account", data); 
         return res.data;
     } catch (error) {
         // 🟢 BEST PRACTICE: Add error handling for proper feedback in signup component
@@ -32,7 +32,7 @@ export const signupUser = async (data) => {
 
 export const getSecurityQuestion = async (email) => {
     try {
-        const res = await axiosInstance.post("api/forgot-password/question", { email });
+        const res = await axiosInstance.post("/api/forgot-password/question", { email });
         return res.data;
     } catch (error) {
         throw error.response?.data || { message: "Failed to retrieve security question" };
@@ -41,7 +41,7 @@ export const getSecurityQuestion = async (email) => {
 
 export const resetPassword = async (data) => {
     try {
-        const res = await axiosInstance.post("api/forgot-password/reset", data);
+        const res = await axiosInstance.post("/api/forgot-password/reset", data);
         return res.data;
     } catch (error) {
         throw error.response?.data || { message: "Password reset failed" };
