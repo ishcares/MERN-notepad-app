@@ -51,7 +51,12 @@ mongoose
 
 // Base Health Check Route
 app.get("/", (req, res) => {
-    res.json({ status: "ok", service: "Notes Backend" });
+    res.json({ 
+        status: "ok", 
+        service: "Notes Backend",
+        dbConnectionState: mongoose.connection.readyState, // 0 = disconnected, 1 = connected, 2 = connecting
+        hasMongoUrl: !!process.env.MONGO_URL
+    });
 });
 
 // 🚀 FIX: Revert to standard /api prefix to match client requests (Solves 404 Error)
