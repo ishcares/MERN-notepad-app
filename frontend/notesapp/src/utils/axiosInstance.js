@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  // 🛑 FIX 1: Use the relative path for the Nginx/Vite proxy
-  baseURL: "/api", 
-  withCredentials: true,
+  // Use env var in production (Netlify), fall back to relative path for local dev (Vite proxy)
+  baseURL: import.meta.env.VITE_BACKEND_URL || "/api",
+  withCredentials: true,
 });
 
 axiosInstance.interceptors.request.use((config) => {
