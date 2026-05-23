@@ -22,21 +22,30 @@ const PORT = process.env.PORT || 8000; // Define port here
 app.use(express.json());
 
 // 2. ✅ ALLOW CORS
-const allowedOrigin = process.env.ALLOWED_ORIGIN || "http://localhost:5173";
+const allowedOriginPattern = /^(https?:\/\/localhost:\d+|https?:\/\/127\.0\.0\.1:\d+|https?:\/\/[a-zA-Z0-9-._]+\.netlify\.app)$/;
 app.use(
-    cors({
-        origin: allowedOrigin,
-        credentials: true,
-        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-        allowedHeaders: 'Content-Type, Authorization',
-    })
+    cors({
+        origin: function (origin, callback) {
+            // Allow requests with no origin (like mobile apps or curl)
+            if (!origin) return callback(null, true);
+            
+            if (allowedOriginPattern.test(origin) || origin === process.env.ALLOWED_ORIGIN) {
+                callback(null, true);
+            } else {
+                callback(new Error('Not allowed by CORS'));
+            }
+        },
+        credentials: true,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        allowedHeaders: 'Content-Type, Authorization',
+    })
 );
 
 // 3. ✅ CONNECT TO MONGODB
 mongoose
-    .connect(process.env.MONGO_URL)
-    .then(() => console.log("✅ MongoDB connected"))
-    .catch((err) => console.error("❌ MongoDB connection error:", err));
+    .connect(process.env.MONGO_URL)
+    .then(() => console.log("✅ MongoDB connected"))
+    .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 // 4. ✅ ROOT ROUTE & API ROUTES
 
