@@ -6,7 +6,8 @@ A full-stack note-taking application built using the MERN stack and containerize
 
 ## 🌐 Live Demo
 
-🚀 https://notesappbyishita.netlify.app/
+🚀 https://spontaneous-eclair-e43cdd.netlify.app/
+
 
 ---
 
